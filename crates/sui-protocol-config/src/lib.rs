@@ -12,7 +12,7 @@ use tracing::{info, warn};
 
 /// The minimum and maximum protocol versions supported by this build.
 const MIN_PROTOCOL_VERSION: u64 = 1;
-const MAX_PROTOCOL_VERSION: u64 = 35;
+const MAX_PROTOCOL_VERSION: u64 = 36;
 
 // Record history of protocol version allocations here:
 //
@@ -105,6 +105,7 @@ const MAX_PROTOCOL_VERSION: u64 = 35;
 // Version 34: Framework changes for random beacon.
 // Version 35: Add poseidon hash function.
 //             Enable coin deny list.
+// Version 36: Set the consensus accepted transaction size and the included transactions size in the proposed block.
 
 #[derive(Copy, Clone, Debug, Hash, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ProtocolVersion(u64);
@@ -884,6 +885,11 @@ pub struct ProtocolConfig {
     /// Maximum allowed precision loss when reducing voting weights for the random beacon
     /// protocol.
     random_beacon_reduction_allowed_delta: Option<u16>,
+
+    /// The maximum serialised transaction size (in bytes) accepted by consensus
+    consensus_max_transaction_size_bytes: Option<u64>,
+    /// The maximum size of transactions included in a consensus proposed block
+    consensus_max_block_transactions_size_bytes: Option<u64>,
 }
 
 // feature flags
@@ -1480,8 +1486,11 @@ impl ProtocolConfig {
             max_age_of_jwk_in_epochs: None,
 
             random_beacon_reduction_allowed_delta: None,
-            // When adding a new constant, set it to None in the earliest version, like this:
-            // new_constant: None,
+
+            consensus_max_transaction_size_bytes: None,
+
+            consensus_max_block_transactions_size_bytes: None, // When adding a new constant, set it to None in the earliest version, like this:
+                                                               // new_constant: None,
         };
         for cur in 2..=version.0 {
             match cur {
@@ -1759,6 +1768,10 @@ impl ProtocolConfig {
 
                     cfg.feature_flags.enable_coin_deny_list = true;
                 }
+                36 => {
+                    cfg.consensus_max_transaction_size_bytes = Some(6 * 1_024 * 1024);
+                    cfg.consensus_max_block_transactions_size_bytes = Some(6 * 1_024 * 1024);
+                }
                 // Use this template when making changes:
                 //
                 //     // modify an existing constant.
@@ -1841,6 +1854,12 @@ impl ProtocolConfig {
     }
     pub fn set_enable_effects_v2(&mut self, val: bool) {
         self.feature_flags.enable_effects_v2 = val;
+    }
+    pub fn set_consensus_max_transaction_size_bytes(&mut self, val: u64) {
+        self.consensus_max_transaction_size_bytes = Some(val);
+    }
+    pub fn set_consensus_max_block_transactions_size_bytes(&mut self, val: u64) {
+        self.consensus_max_block_transactions_size_bytes = Some(val);
     }
 }
 
