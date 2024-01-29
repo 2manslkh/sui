@@ -20,5 +20,6 @@ mod storage;
 mod threshold_clock;
 mod transactions_client;
 
+mod leader_timeout;
 #[cfg(test)]
 mod test_dag;
