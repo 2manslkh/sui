@@ -77,6 +77,7 @@ async fn test_multisig_e2e() {
     .unwrap();
     let multisig_addr = SuiAddress::from(&multisig_pk);
 
+    // fund the multisig address.
     let (sender, gas) = test_cluster
         .wallet
         .get_one_gas_object()

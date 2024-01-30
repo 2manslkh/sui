@@ -1175,6 +1175,7 @@ fn zklogin_in_multisig_works_with_both_addresses() {
 
 #[test]
 fn test_derive_multisig_address() {
+    // consistency test with typescript: /sdk/typescript/test/unit/cryptography/multisig.test.ts
     let pk1 = PublicKey::ZkLogin(
         ZkLoginPublicIdentifier::new(&OIDCProvider::Twitch.get_config().iss, DEFAULT_ADDRESS_SEED)
             .unwrap(),
