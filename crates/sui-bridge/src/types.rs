@@ -355,6 +355,37 @@ impl BlocklistCommitteeAction {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, Clone, Copy, TryFromPrimitive)]
+#[repr(u8)]
+pub enum EmergencyActionType {
+    Pause = 0,
+    Unpause = 1,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub struct EmergencyAction {
+    pub nonce: u64,
+    pub chain_id: BridgeChainId,
+    pub action_type: EmergencyActionType,
+}
+
+impl EmergencyAction {
+    pub fn to_bytes(&self) -> Vec<u8> {
+        let mut bytes = Vec::new();
+        // Add message type
+        bytes.push(BridgeActionType::EmergencyButton as u8);
+        // Add message version
+        bytes.push(EMERGENCY_BUTTON_MESSAGE_VERSION);
+        // Add nonce
+        bytes.extend_from_slice(&self.nonce.to_be_bytes());
+        // Add chain id
+        bytes.push(self.chain_id as u8);
+        // Add action type
+        bytes.push(self.action_type as u8);
+        bytes
+    }
+}
+
 /// The type of actions Bridge Committee verify and sign off to execution.
 /// Its relationship with BridgeEvent is similar to the relationship between
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -364,11 +395,13 @@ pub enum BridgeAction {
     /// Eth to sui bridge action
     EthToSuiBridgeAction(EthToSuiBridgeAction),
     BlocklistCommitteeAction(BlocklistCommitteeAction),
+    EmergencyAction(EmergencyAction),
     // TODO: add other bridge actions such as blocklist & emergency button
 }
 
 pub const TOKEN_TRANSFER_MESSAGE_VERSION: u8 = 1;
 pub const COMMITTEE_BLOCKLIST_MESSAGE_VERSION: u8 = 1;
+pub const EMERGENCY_BUTTON_MESSAGE_VERSION: u8 = 1;
 
 impl BridgeAction {
     /// Convert to message bytes that are verified in Move and Solidity
@@ -384,6 +417,9 @@ impl BridgeAction {
                 bytes.extend_from_slice(&a.to_bytes());
             }
             BridgeAction::BlocklistCommitteeAction(a) => {
+                bytes.extend_from_slice(&a.to_bytes());
+            }
+            BridgeAction::EmergencyAction(a) => {
                 bytes.extend_from_slice(&a.to_bytes());
             } // TODO add formats for other events
         }
@@ -402,6 +438,7 @@ impl BridgeAction {
             BridgeAction::SuiToEthBridgeAction(a) => a.sui_bridge_event.sui_chain_id,
             BridgeAction::EthToSuiBridgeAction(a) => a.eth_bridge_event.eth_chain_id,
             BridgeAction::BlocklistCommitteeAction(a) => a.chain_id,
+            BridgeAction::EmergencyAction(a) => a.chain_id,
         }
     }
 
@@ -411,6 +448,7 @@ impl BridgeAction {
             BridgeAction::SuiToEthBridgeAction(_) => BridgeActionType::TokenTransfer,
             BridgeAction::EthToSuiBridgeAction(_) => BridgeActionType::TokenTransfer,
             BridgeAction::BlocklistCommitteeAction(_) => BridgeActionType::UpdateCommitteeBlocklist,
+            BridgeAction::EmergencyAction(_) => BridgeActionType::EmergencyButton,
         }
     }
 
@@ -420,6 +458,7 @@ impl BridgeAction {
             BridgeAction::SuiToEthBridgeAction(a) => a.sui_bridge_event.nonce,
             BridgeAction::EthToSuiBridgeAction(a) => a.eth_bridge_event.nonce,
             BridgeAction::BlocklistCommitteeAction(a) => a.nonce,
+            BridgeAction::EmergencyAction(a) => a.nonce,
         }
     }
 }
