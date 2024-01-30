@@ -5,13 +5,17 @@ use crate::{
     error::{BridgeError, BridgeResult},
     types::{BridgeAction, BridgeCommittee, SignedBridgeAction, VerifiedSignedBridgeAction},
 };
+use ethers::core::k256::ecdsa::VerifyingKey;
+use ethers::core::utils::public_key_to_address;
+use ethers::types::Address as EthAddress;
 use fastcrypto::{
     encoding::{Encoding, Hex},
+    error::FastCryptoError,
     secp256k1::{
         recoverable::Secp256k1RecoverableSignature, Secp256k1KeyPair, Secp256k1PublicKey,
         Secp256k1PublicKeyAsBytes,
     },
-    traits::{RecoverableSigner, VerifyRecoverable},
+    traits::{RecoverableSigner, ToFromBytes, VerifyRecoverable},
 };
 use fastcrypto::{hash::Keccak256, traits::KeyPair};
 use serde::{Deserialize, Serialize};
@@ -23,12 +27,33 @@ pub type BridgeAuthorityKeyPair = Secp256k1KeyPair;
 pub type BridgeAuthorityPublicKey = Secp256k1PublicKey;
 pub type BridgeAuthorityRecoverableSignature = Secp256k1RecoverableSignature;
 
-#[derive(Ord, PartialOrd, PartialEq, Eq, Clone, Debug, Hash)]
+#[derive(Ord, PartialOrd, PartialEq, Eq, Clone, Debug, Hash, Serialize, Deserialize)]
 pub struct BridgeAuthorityPublicKeyBytes(Secp256k1PublicKeyAsBytes);
+
+impl BridgeAuthorityPublicKeyBytes {
+    pub fn to_eth_address(&self) -> EthAddress {
+        // unwrap: the conversion should not fail
+        let pubkey = VerifyingKey::from_sec1_bytes(self.as_bytes()).unwrap();
+        public_key_to_address(&pubkey)
+    }
+}
 
 impl From<&BridgeAuthorityPublicKey> for BridgeAuthorityPublicKeyBytes {
     fn from(pk: &BridgeAuthorityPublicKey) -> Self {
         Self(Secp256k1PublicKeyAsBytes::from(pk))
+    }
+}
+
+impl ToFromBytes for BridgeAuthorityPublicKeyBytes {
+    /// Parse an object from its byte representation
+    fn from_bytes(bytes: &[u8]) -> Result<Self, FastCryptoError> {
+        let pk = BridgeAuthorityPublicKey::from_bytes(bytes)?;
+        Ok(Self::from(&pk))
+    }
+
+    /// Borrow a byte slice representing the serialized form of this object
+    fn as_bytes(&self) -> &[u8] {
+        self.as_ref()
     }
 }
 
