@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706720648009,
+  "lastUpdate": 1706722206725,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -239,6 +239,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 354748,
             "range": "± 18081",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "2895723+tzakian@users.noreply.github.com",
+            "name": "Tim Zakian",
+            "username": "tzakian"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1db774591e06159b471e902db114109fefe65d3c",
+          "message": "[shared-object-deletion] Turn on shared object deletion in mainnet (#16008)\n\n## Description \r\n\r\nTurn on shared object deletion in mainnet. This is a flag-only PR (+\r\nupdates) that adds a new protocol version (version 36).\r\n\r\n## Test Plan \r\n\r\nExisting tests + has been running in devnet/testnet for the past couple\r\nmonths.\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [X] protocol change\r\n- [X] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\n\r\nEnable shared object deletion in mainnet.",
+          "timestamp": "2024-01-31T17:22:41Z",
+          "tree_id": "b5f310fdbba9c3d68c55a40ffb5a1c24ee228715",
+          "url": "https://github.com/MystenLabs/sui/commit/1db774591e06159b471e902db114109fefe65d3c"
+        },
+        "date": 1706722202739,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 365343,
+            "range": "± 44188",
             "unit": "ns/iter"
           }
         ]
