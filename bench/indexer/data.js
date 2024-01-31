@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706736838497,
+  "lastUpdate": 1706738255356,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -449,6 +449,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 347421,
             "range": "± 20799",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "tmn@mystenlabs.com",
+            "name": "Todd Nowacki",
+            "username": "tnowacki"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0186d01efd4839c6eba5837dada7eb3c07afbe70",
+          "message": "[move] Warn on unknown attributes  (#15744)\n\n## Description \r\n\r\n- Move will now warn on unknown attributes \r\n- To help with this, I refactored `lint_allow` and any `<prefix>_allow`\r\nto `allow(<prefix>(_))`. Though to not break everyone's code, I still\r\nsupport `lint_allow`, but manually.\r\n- Added a warning about unused `#[verify_only]`. Originally, I removed\r\nthe filtering and made this an error, but that felt too invasive for\r\nanyone using it previously.\r\n\r\n## Test Plan \r\n\r\n- Added new tests\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [X] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\n\r\nMove's `#[lint_allow(_)]` annotations can now be written as\r\n`#[allow(lint(_))]` and can be grouped with other `#[allow(_)]`\r\nannotations.\r\nMove will now warn for any unknown attributes.",
+          "timestamp": "2024-01-31T21:50:05Z",
+          "tree_id": "d9d30386cb7ff5da0412b11330bb2714ff7b96e3",
+          "url": "https://github.com/MystenLabs/sui/commit/0186d01efd4839c6eba5837dada7eb3c07afbe70"
+        },
+        "date": 1706738251553,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 378594,
+            "range": "± 29839",
             "unit": "ns/iter"
           }
         ]
