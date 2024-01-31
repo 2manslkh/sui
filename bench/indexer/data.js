@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706735424629,
+  "lastUpdate": 1706736838497,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -419,6 +419,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 355192,
             "range": "± 20717",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "127570466+wlmyng@users.noreply.github.com",
+            "name": "wlmyng",
+            "username": "wlmyng"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "860bfed2cd32e0b69c0dd89ef43b9343f74e5a2f",
+          "message": "[gql][consistent-reads][n/n] Implement consistent reads (#15913)\n\n## Description \r\n\r\nThe top-level commit of a stack of PRs for ensuring that a `GraphQL`\r\nquery is consistent from its root to leaf. To do so, we thread a\r\n`checkpoint_viewed_at: Option<u64>` field through each `GraphQL` type.\r\nThis field is populated when a type is resolved and when a cursor is\r\nbuilt. This field needs to be on cursors as well, so that when\r\npaginating through a connection, we can lock the pagination queries to a\r\nspecific checkpoint in time.\r\n\r\nA few queries to demonstrate:\r\n```\r\n{\r\n  transactionBlock(digest:\"digest\"){\r\n    sender {\r\n      objects {\r\n        nodes {\r\n          address, version\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\nThe query is made at checkpoint 10, thus `checkpoint_viewed_at=10`. The\r\nnested `objects` field inherits `checkpoint_viewed_at=10`.\r\n\r\n```\r\n{\r\n  object(address: \"address\", version: 10) {\r\n    owner {\r\n      ... on AddressOwner {\r\n        owner {\r\n          objects {\r\n            nodes {\r\n              digest\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\nSimilarly, the nested owner and objects all inherit\r\n`checkpoint_viewed_at=10`.\r\n\r\n```\r\nquery {\r\n  address(address: \"...\") {\r\n    coins(type: \"0x2::sui::SUI\") {\r\n      nodes { \r\n        owner {\r\n          ... on AddressOwner {\r\n            owner { asAddress { balance(type: \"0x2::sui::SUI\") { totalBalance } } }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\nIf `checkpoint_viewed_at=10`, then each coin result will yield an owner\r\nthat inherits `checkpoint_viewed_at=10`. Subsequently, each balance\r\nresult reflects the owner's balance at checkpoint 10.\r\n\r\n```\r\nquery {\r\n  address(address: \"...\") {\r\n    coins(type: \"0x2::sui::SUI\", cursor:\"checkpoint=10\") {\r\n      nodes { \r\n        owner {\r\n          ... on AddressOwner {\r\n            owner { asAddress { balance(type: \"0x2::sui::SUI\") { totalBalance } } }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\nSome time later, the user makes another query using a cursor from the\r\nfirst query. Now, `checkpoint_viewed_at=20`. When we hit the coins\r\nconnection field, `checkpoint_viewed_at` is set to `10`, and this value\r\nis inherited by the rest of the children.\r\n\r\n\r\n\r\n## Stack\r\nThis stack adds consistent context to the remaining types, and completes\r\nthe consistency framework.\r\nhttps://github.com/MystenLabs/sui/pull/16006\r\nhttps://github.com/MystenLabs/sui/pull/15996\r\nhttps://github.com/MystenLabs/sui/pull/15962\r\nhttps://github.com/MystenLabs/sui/pull/15961\r\nhttps://github.com/MystenLabs/sui/pull/15960\r\nhttps://github.com/MystenLabs/sui/pull/15959\r\n\r\nThis stack implements historical queries for `Object` and its subtypes.\r\nIt also sets up a nascent framework for supporting consistent reads.\r\nhttps://github.com/MystenLabs/sui/pull/15967\r\nhttps://github.com/MystenLabs/sui/pull/15958\r\nhttps://github.com/MystenLabs/sui/pull/15963\r\nhttps://github.com/MystenLabs/sui/pull/15932\r\nhttps://github.com/MystenLabs/sui/pull/15931\r\nhttps://github.com/MystenLabs/sui/pull/15915\r\nhttps://github.com/MystenLabs/sui/pull/15914\r\n\r\n## Test Plan \r\n\r\nHow did you test the new or updated feature?\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2024-01-31T13:26:51-08:00",
+          "tree_id": "f3810eb509d6a4a6473c96379bf79a28a2e62a32",
+          "url": "https://github.com/MystenLabs/sui/commit/860bfed2cd32e0b69c0dd89ef43b9343f74e5a2f"
+        },
+        "date": 1706736834906,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 347421,
+            "range": "± 20799",
             "unit": "ns/iter"
           }
         ]
