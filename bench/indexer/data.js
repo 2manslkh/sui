@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706720395827,
+  "lastUpdate": 1706720648009,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -209,6 +209,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 368438,
             "range": "± 25560",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "halfprice@users.noreply.github.com",
+            "name": "Zhe Wu",
+            "username": "halfprice"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2a732934a7250391afbf777b6d5a73e54278ed9d",
+          "message": "Remove unused scoped_counter (#15964)\n\n## Description \r\n\r\nNot sure if this is necessary.\r\n\r\n## Test Plan \r\n\r\nHow did you test the new or updated feature?\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2024-01-31T08:47:24-08:00",
+          "tree_id": "e24ac0f179ec500b3b49ad7e93632232950242b7",
+          "url": "https://github.com/MystenLabs/sui/commit/2a732934a7250391afbf777b6d5a73e54278ed9d"
+        },
+        "date": 1706720643987,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 354748,
+            "range": "± 18081",
             "unit": "ns/iter"
           }
         ]
