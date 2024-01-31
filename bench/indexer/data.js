@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706734293093,
+  "lastUpdate": 1706735424629,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -389,6 +389,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 359416,
             "range": "± 36807",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "97870774+arun-koshy@users.noreply.github.com",
+            "name": "Arun Koshy",
+            "username": "arun-koshy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "92c7d112c2148ebaec01f0e0013b5bf4e4e61772",
+          "message": "[consensus] Add universal committer (#15839)\n\n## Description\r\nThe `UniversalCommitter` uses a collection of `BaseCommitter`'s to\r\ncommit a sequence of leaders. It will be configured to enable\r\nmulti-leader & pipelining in Mysticeti.\r\n\r\nNote: Feel free to ignore test util changes as most of that will be\r\nreviewed and checked in with\r\n[PR#15806](https://github.com/MystenLabs/sui/pull/15806)\r\n\r\n## Test Plan\r\nAdded a few basic tests to ensure things are working, but will add more\r\ntests in a follow up PR so this PR can remain small.",
+          "timestamp": "2024-01-31T13:02:44-08:00",
+          "tree_id": "662da848565f932ef2b1d5c774718d817c9c62bc",
+          "url": "https://github.com/MystenLabs/sui/commit/92c7d112c2148ebaec01f0e0013b5bf4e4e61772"
+        },
+        "date": 1706735420924,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 355192,
+            "range": "± 20717",
             "unit": "ns/iter"
           }
         ]
