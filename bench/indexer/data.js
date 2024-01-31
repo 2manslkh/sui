@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706738255356,
+  "lastUpdate": 1706741310167,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -479,6 +479,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 378594,
             "range": "± 29839",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rvantonder@gmail.com",
+            "name": "Rijnard van Tonder",
+            "username": "rvantonder"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4acefbd67c6adec6ea18d68fb43be9d2f20aee06",
+          "message": "move: pause tracking a package in config.toml (#16032)\n\n## Description \r\n\r\nThe source for this package is moving on the `master` branch\r\nhttps://github.com/kunalabs-io/sui-smart-contracts/commit/e6fcbd69ed330de2824abb45c876f4b360923de2\r\nwhich shouldn't happen when we're tracking it for bytecode verification.\r\nWhen it moves, but the published address stays the same, the bytecode no\r\nlonger matches upstream and the service pauses.\r\n\r\nI'll get in touch with package maintainers to figure out how we can pin\r\nthe source to a branch that doesn't move or is being actively developed\r\nagainst, and will then re-enable.\r\n\r\n## Test Plan \r\n\r\nN/A, maintaining source service.\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2024-01-31T22:40:48Z",
+          "tree_id": "a3dbdb9ee15aaf0a89680f1afd32217f57cbd498",
+          "url": "https://github.com/MystenLabs/sui/commit/4acefbd67c6adec6ea18d68fb43be9d2f20aee06"
+        },
+        "date": 1706741306036,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 347689,
+            "range": "± 22630",
             "unit": "ns/iter"
           }
         ]
