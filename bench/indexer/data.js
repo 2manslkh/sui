@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706691512033,
+  "lastUpdate": 1706703456141,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -149,6 +149,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 347145,
             "range": "± 20970",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ashok@mystenlabs.com",
+            "name": "Ashok Menon",
+            "username": "amnn"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a7dba3620093942cfd5de7d90761b87529bbf262",
+          "message": "[GraphQL/Docs][RFC] Move GraphQL References out from Sui API heading (#16019)\n\n## Description\r\n\r\nCreate distinct top-level headings under \"References\" for \"Sui JSON-RPC\r\nAPI\" and \"Sui GraphQL API\". This was to avoid a couple of confusing\r\naspects of the previous IA:\r\n\r\n- It was unclear when reading \"Sui API\" what that was referring to\r\n(GraphQL or JSON-RPC).\r\n- The \"RPC Best Practices\" page (intended for JSON-RPC) was confusingly\r\nnext to the GraphQL references.\r\n\r\n## Test Plan\r\n\r\n```\r\ndocs/site$ pnpm build && pnpm start\r\n```\r\n\r\n+ :eyes:",
+          "timestamp": "2024-01-31T12:08:13Z",
+          "tree_id": "b17c6e7e2dd3ef05b2823906bc198dbc2613f9fa",
+          "url": "https://github.com/MystenLabs/sui/commit/a7dba3620093942cfd5de7d90761b87529bbf262"
+        },
+        "date": 1706703451864,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 364319,
+            "range": "± 31163",
             "unit": "ns/iter"
           }
         ]
