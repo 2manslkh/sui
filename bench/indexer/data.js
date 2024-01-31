@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706734129355,
+  "lastUpdate": 1706734293093,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -359,6 +359,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 357291,
             "range": "± 18765",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "rvantonder@gmail.com",
+            "name": "Rijnard van Tonder",
+            "username": "rvantonder"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5bbd4cf05a584072ed61b038034de155ba815f19",
+          "message": "move: tidy lock file header read interface (#16015)\n\n## Description \r\n\r\nJust a cleanup of how we do lock file header reads. See separate commits\r\nfor a breakdown of the change, and inline comments for more.\r\n\r\nFollow up of\r\nhttps://github.com/MystenLabs/sui/pull/15751#pullrequestreview-1829957061.\r\n\r\n## Test Plan \r\n\r\nShould not be changing anything functionally, covered by existing tests.\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2024-01-31T20:41:38Z",
+          "tree_id": "51a91bd371b07432edc68b04c22fc931536dae03",
+          "url": "https://github.com/MystenLabs/sui/commit/5bbd4cf05a584072ed61b038034de155ba815f19"
+        },
+        "date": 1706734289239,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 359416,
+            "range": "± 36807",
             "unit": "ns/iter"
           }
         ]
