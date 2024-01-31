@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706722206725,
+  "lastUpdate": 1706731533712,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -269,6 +269,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 365343,
             "range": "± 44188",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "103447440+mystenmark@users.noreply.github.com",
+            "name": "Mark Logan",
+            "username": "mystenmark"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7c045478b951a2610f62f60a2e73a7a209d3f7c4",
+          "message": "Fix simtest determinism (#16029)",
+          "timestamp": "2024-01-31T11:57:15-08:00",
+          "tree_id": "6de7fae0b287c82fd0ad53ee54a4948a9ff530d7",
+          "url": "https://github.com/MystenLabs/sui/commit/7c045478b951a2610f62f60a2e73a7a209d3f7c4"
+        },
+        "date": 1706731529716,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 356916,
+            "range": "± 30294",
             "unit": "ns/iter"
           }
         ]
