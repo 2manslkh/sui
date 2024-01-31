@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706678718755,
+  "lastUpdate": 1706679620392,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -59,6 +59,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 315316,
             "range": "± 25612",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "135084671+stefan-mysten@users.noreply.github.com",
+            "name": "stefan-mysten",
+            "username": "stefan-mysten"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5a7c5b33a5228a26f2a5d63b1efe8842e0b153c6",
+          "message": "[graphql] Improve the health check (#16016)\n\n## Description \r\n\r\nImprove the health check by removing the query to the DB and replacing\r\nit with a status code 200 if all is OK, or 500 on error. It also cleans\r\nup the previous health check checks in the logging logic.\r\n\r\nIt also moves metrics and connection under a `AppState` struct as `axum`\r\ndoes not allow states with different types on the router, so we need to\r\nbundle them under one state and then have `FromRef` implementations for\r\nthe substates.\r\n\r\n## Test Plan \r\n\r\nExisting tests, manually analyzing the logs.\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2024-01-31T05:32:48Z",
+          "tree_id": "f6ac748504b8bdce897f90eaeb29d1dc53b03f09",
+          "url": "https://github.com/MystenLabs/sui/commit/5a7c5b33a5228a26f2a5d63b1efe8842e0b153c6"
+        },
+        "date": 1706679616908,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 362886,
+            "range": "± 16403",
             "unit": "ns/iter"
           }
         ]
