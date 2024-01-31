@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706732297570,
+  "lastUpdate": 1706734129355,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -329,6 +329,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 381537,
             "range": "± 29441",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "2895723+tzakian@users.noreply.github.com",
+            "name": "Tim Zakian",
+            "username": "tzakian"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f2250c8681d52dcbc5a06a34f60a81d96f102091",
+          "message": "[easy][sui-package-resolver] Switch package resolver tests to using insta test for expected value tests (#16030)\n\n## Description \r\n\r\nConverts the expected value tests in the sui-package-resolver crate to\r\nusing insta test. This makes it easier to update/review and also to have\r\nlarger resolution tests.\r\n\r\nNote that I kept alternate display formatting for the layouts since that\r\nmakes things easier to read in the snapshots.\r\n\r\n## Test Plan \r\n\r\nMake sure existing tests pass, and that the new expected insta snapshots\r\nmatch the old ones.",
+          "timestamp": "2024-01-31T20:41:19Z",
+          "tree_id": "1c8547b5864cbcdc1f13ea1908baf2629b13d152",
+          "url": "https://github.com/MystenLabs/sui/commit/f2250c8681d52dcbc5a06a34f60a81d96f102091"
+        },
+        "date": 1706734125169,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 357291,
+            "range": "± 18765",
             "unit": "ns/iter"
           }
         ]
