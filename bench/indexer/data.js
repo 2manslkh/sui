@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706731533712,
+  "lastUpdate": 1706732297570,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -299,6 +299,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 356916,
             "range": "± 30294",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "kklas@users.noreply.github.com",
+            "name": "Krešimir Klas",
+            "username": "kklas"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8b2847fca5ef7d4d64bf5517c83864d091c3c128",
+          "message": "move-package: make `nested_deps_git_local` use sui repo for dep (#16023)\n\n## Description \r\n\r\nForgot this yesterday with the nits. It's related to this\r\nhttps://github.com/MystenLabs/sui/pull/15867/files/3ee2e7f1df0cfea267a0b25896b46a5d6c61629b#r1466324788\r\n\r\n## Test Plan \r\n\r\nHow did you test the new or updated feature?\r\n\r\nN/A\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2024-01-31T12:11:07-08:00",
+          "tree_id": "213a78847e2de2067e71347393d50e2ae84d0639",
+          "url": "https://github.com/MystenLabs/sui/commit/8b2847fca5ef7d4d64bf5517c83864d091c3c128"
+        },
+        "date": 1706732293968,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 381537,
+            "range": "± 29441",
             "unit": "ns/iter"
           }
         ]
