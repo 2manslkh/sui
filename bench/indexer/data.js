@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706686912958,
+  "lastUpdate": 1706691512033,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -119,6 +119,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 396199,
             "range": "± 25678",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "112846738+benr-ml@users.noreply.github.com",
+            "name": "benr-ml",
+            "username": "benr-ml"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "de3c158b8a88c8a214d8b61f4cb1c4eb37c99e08",
+          "message": "Expose EC APIs for BLS12-381 (#12337)\n\n## Description \r\nAdd Move modules for BLS12-381 group operations.\r\nRistretto group operations can be added in the future (tested in\r\nhttps://github.com/MystenLabs/sui/tree/ben/ecops_rist).\r\nEnabled in devnet only.\r\n\r\n## Test Plan \r\nExisting and many newly added tests.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [x] breaking change for FNs (FN binary must upgrade)\r\n- [x] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\nAdd Move modules for BLS12-381 group operations (allowing developers to\r\nimplement cryptographic protocols directly in Move). Enabled in devnet\r\nonly.",
+          "timestamp": "2024-01-31T10:48:59+02:00",
+          "tree_id": "748c197111ad2cdf1e5daa8adc3ce56ef747a837",
+          "url": "https://github.com/MystenLabs/sui/commit/de3c158b8a88c8a214d8b61f4cb1c4eb37c99e08"
+        },
+        "date": 1706691508122,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 347145,
+            "range": "± 20970",
             "unit": "ns/iter"
           }
         ]
