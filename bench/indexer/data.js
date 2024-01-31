@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706703456141,
+  "lastUpdate": 1706720395827,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -179,6 +179,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 364319,
             "range": "± 31163",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "147538877+pei-mysten@users.noreply.github.com",
+            "name": "pei-mysten",
+            "username": "pei-mysten"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "18c9417482cd7cceae006811e403693d0f4ac05f",
+          "message": "[suiop-cli] check go installation and run go mod tidy by default (#15975)\n\n## Description \r\n\r\nsuiop-cli should:\r\n1. check whether Go is installed\r\n2. run `go mod tidy` by default after creating a new pulumi project\r\n3. print out the `pulumi new` command for easier debugging\r\n\r\n## Test Plan \r\nran `suiop pulumi init --app` locally and seeing expected output\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2024-01-31T08:41:23-08:00",
+          "tree_id": "d07575e9a0a4fb4496e4fc8d24b41067e81ebfd6",
+          "url": "https://github.com/MystenLabs/sui/commit/18c9417482cd7cceae006811e403693d0f4ac05f"
+        },
+        "date": 1706720392191,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 368438,
+            "range": "± 25560",
             "unit": "ns/iter"
           }
         ]
