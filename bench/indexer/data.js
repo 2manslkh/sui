@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706679620392,
+  "lastUpdate": 1706686912958,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -89,6 +89,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 362886,
             "range": "± 16403",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "emma@mystenlabs.com",
+            "name": "Emma Zhong",
+            "username": "emmazzz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6cd39fceda9b44d56614d1dd6a39340593ae6e4c",
+          "message": "[GraphQL] implement some missing fields (#15993)\n\n## Description \r\n\r\nImplement missing fields from the schema including:\r\n- StakedSui's pool id\r\n- epoch total transactions\r\n- a number of fields in ValidatorSet\r\n- liveObjectDigest to Epoch\r\n\r\n## Test Plan \r\n\r\nAdded to existing tests.\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [ ] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes",
+          "timestamp": "2024-01-30T23:34:17-08:00",
+          "tree_id": "7904089e86d9fe629c4e8e7a2c947cc7db1a2335",
+          "url": "https://github.com/MystenLabs/sui/commit/6cd39fceda9b44d56614d1dd6a39340593ae6e4c"
+        },
+        "date": 1706686909088,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 396199,
+            "range": "± 25678",
             "unit": "ns/iter"
           }
         ]
