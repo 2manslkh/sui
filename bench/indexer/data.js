@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706741310167,
+  "lastUpdate": 1706750978590,
   "repoUrl": "https://github.com/MystenLabs/sui",
   "entries": {
     "Benchmark": [
@@ -509,6 +509,36 @@ window.BENCHMARK_DATA = {
             "name": "get_checkpoint",
             "value": 347689,
             "range": "± 22630",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "adam@mystenlabs.com",
+            "name": "Adam Welc",
+            "username": "awelc"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c6c87565bbcfdfec4b5b54a305d58fe29895f948",
+          "message": "[move-compiler] Parsing error recovery for top-level definitions (#15794)\n\n## Description \r\n\r\nThis PR attempts to provide error recovery during parsing for top-level\r\nmodule definitions.\r\n\r\nConceptually what we want is to stop parsing a top-level definition if a\r\nparsing error has been encountered, skip this top-level definition\r\naltogether, and move on to parsing the next one.\r\n\r\nThe challenge is in the \"skipping\" part - how do we \"reset\" parser to\r\nthe right state so that it can start parsing the next top-level\r\ndefinition.\r\n\r\nThe idea is as follows. When encountering a parsing error when parsing\r\nany top-level definition, we keep advancing the parser until we see the\r\nbeginning of the next definition (e.g., `#` starting attributes list,\r\n`fun` keyword, `const` keyword, etc.). Then we resume parsing and\r\neventually return a partially complete parsed AST.\r\n\r\nOne wrinkle here is what happens when more than one module is defined in\r\nthe same file, and the definition of the previous module ends in a\r\nparsing error:\r\n```\r\nmodule ParseError::M3 {\r\n    const c: u64 = 7;\r\n\r\n    const d\r\n}\r\n\r\n#[test]\r\nmodule ParseError::M4 {\r\n    const c: u64 = 7;\r\n}\r\n```\r\nUpon encountering parsing error at the end of `M3` we would keep\r\nadvancing the parser searching of the next top-level definition in `M3`.\r\nThis would not be a problem if `M3` was the only module defined in a\r\nfile as the parser would eventually encounter EOF and quit.\r\n\r\nAs it happens, it's not a big problem even if `M3` is succeeded by `M4.\r\nThe parser will encounter start of attributes definition for `M4`. It\r\nwill \"think\" it's another top-level definition of `M3` and try to parse\r\nit. It will fail upon encountering the `module` keyword, but it will be\r\nin the correct place to simply finish parsing `M3` and start parsing\r\n`M4` (with optional attributes that have to be kept on the side for\r\nthis).\r\n\r\n## Test Plan \r\n\r\nTests have been updated and new tests added.\r\n\r\n---\r\nIf your changes are not user-facing and do not break anything, you can\r\nskip the following section. Otherwise, please briefly describe what has\r\nchanged under the Release Notes section.\r\n\r\n### Type of Change (Check all that apply)\r\n\r\n- [ ] protocol change\r\n- [x] user-visible impact\r\n- [ ] breaking change for a client SDKs\r\n- [ ] breaking change for FNs (FN binary must upgrade)\r\n- [ ] breaking change for validators or node operators (must upgrade\r\nbinaries)\r\n- [ ] breaking change for on-chain data layout\r\n- [ ] necessitate either a data wipe or data migration\r\n\r\n### Release notes\r\nDevelopers may see more compiler diagnostics than before as parsing\r\nerrors no longer stop compilation and diagnostics from later compilation\r\nstages my get included as well in the compilation result.",
+          "timestamp": "2024-01-31T17:19:36-08:00",
+          "tree_id": "cc19b4eec53532177dca6fc4dcd909844c52b493",
+          "url": "https://github.com/MystenLabs/sui/commit/c6c87565bbcfdfec4b5b54a305d58fe29895f948"
+        },
+        "date": 1706750975227,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "get_checkpoint",
+            "value": 374327,
+            "range": "± 26874",
             "unit": "ns/iter"
           }
         ]
